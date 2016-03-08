@@ -1,10 +1,12 @@
 import java.awt.AWTException;
+import java.awt.Container;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
 import java.awt.Robot;
 
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 
 public class Mousey {
 	int slp1 = 500;
@@ -13,6 +15,7 @@ public class Mousey {
 	int currentMove = 0;
 	Robot robo;
 	JFrame frm = null;
+	JTextArea txt = null;
 
 	public Mousey(String[] args) {
 		int mx = 892;
@@ -28,10 +31,16 @@ public class Mousey {
 //			int j = intRotate(i, mx, mi, 1);
 //			System.out.println("i " + i + "  j " + j);
 //		}
-		frm = new JFrame ("Mouse move close to stop 1.1");
+		frm = new JFrame ("Mouse move close to stop 1.2");
 		frm.setSize(650,600);
 		frm.setVisible(true);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		 txt = new JTextArea("Loading ...", 3, 20);
+		 Container cnt = frm.getContentPane();
+		 cnt.setLayout(null);
+		cnt.add(txt);
+		txt.setBounds(20,25,200, 40);
 		PointerInfo poi = MouseInfo.getPointerInfo();
 		Point where = null;
 		int x, y;
@@ -50,6 +59,9 @@ public class Mousey {
 			} else if (currentMove % 4 == 3) {
 				y = (int) (where.getY() - 1);
 			}
+			final String s1 = "x " + x + " y " + y;
+			System.out.println(s1);
+			txt.setText(s1);
 			robo.mouseMove(x, y);
 			SoundUtils.toneit(300, 90);
 			slp(8000);
