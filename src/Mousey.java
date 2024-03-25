@@ -63,7 +63,7 @@ public class Mousey {
 			System.out.println(s1);
 			txt.setText(s1);
 			robo.mouseMove(x, y);
-			SoundUtils.toneit(300, 90);
+			//SoundUtils.toneit(300, 90);
 			slp(8000);
 		}
 
